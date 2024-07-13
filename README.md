@@ -13,7 +13,7 @@ Use your own information, sign up a twitter account if needed.
 In China, we need a proxy to be connected, find the port number in your proxy
 for example:
 
-```port=7897``
+```port=7897```
 
 ## Run 
 python crawler.py
