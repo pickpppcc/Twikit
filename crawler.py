@@ -8,29 +8,31 @@ import requests
 
 from twikit import Client
 
+USERNAME = 'example_user'
+EMAIL = 'email@example.com'
+PASSWORD = 'password0000'
+port=7897
 
 # 使用twikit.Client并添加代理
-# 这个需要找到自己本地梯子的端口号,proxy='http://127.0.0.1:{port}'
-client = Client('en-US',proxy='http://127.0.0.1:7897')
+# 需要找到本地梯子的端口号,proxy='http://127.0.0.1:{port}'
+client = Client('en-US',proxy=f'http://127.0.0.1:{port}')
 # 修复f-string中的引号问题
 
-client.login(auth_info_1='user_name', auth_info_2='user_mail@xx.com',password='password')
+client.login(auth_info_1=USERNAME, auth_info_2=EMAIL,password=PASSWORD)
 client.save_cookies('cookies.json')
 client.load_cookies(path='cookies.json')
 
 # 用户名列表
-# usernames = ['zelenskyyua', 'NatGeoTravel', 'BBCEarth','historyinmemes','designboom','NYTimesTravel','SmithsonianMag','ThePhotoSociety']
-# counts=[10,30,50,60,30,30,50,50]
 usernames = [ 'BBCEarth','historyinmemes','designboom','NYTimesTravel','SmithsonianMag','ThePhotoSociety']
-counts=[50,60,30,30,50,50]
+counts= [50,60,30,30,50,50]
+#选取爬虫用户中，对应每个用户爬取的数据条目数
+
 # 创建保存所有用户信息的列表
 all_tweets_to_store = []
 
 # 创建保存图片和文本信息的文件
 output_file = 'tweets_images_texts.txt'
 
-# # 清空文件内容
-# open(output_file, 'w').close()
 def download_image(text, url, file_path):
     # 尝试次数
     max_retries = 5
